@@ -1,4 +1,0 @@
-<% @users.each do |user| %>
-  $("#issue_assigned_user_ids_<%= user.id %>").remove();
-<% end %>
-$('#assigneds_inputs').append('<%= escape_javascript(assigneds_checkboxes(nil, @users, true)) %>');

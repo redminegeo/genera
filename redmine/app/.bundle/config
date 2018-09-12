@@ -1,4 +1,0 @@
----
-BUNDLE_PATH: "/home/siim/.gem"
-BUNDLE_WITHOUT: "development:test"
-BUNDLE_DISABLE_SHARED_GEMS: "true"
