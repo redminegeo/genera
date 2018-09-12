@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  container_id: 1
+  container_type: MyString
+  filename: MyString
+  author_id: 1
+  is_signatured: false
+  disk_directory: MyString
+  filesize: 1
+  created_user: 
+
+two:
+  container_id: 1
+  container_type: MyString
+  filename: MyString
+  author_id: 1
+  is_signatured: false
+  disk_directory: MyString
+  filesize: 1
+  created_user: 

@@ -1,0 +1,10 @@
+<% if User.current.logged? && !@issue.new_record? %>
+  <% eraser = Eraser.find_for_issue(:element_id => @issue, :user_id => User.current) %>
+  <% if eraser %>
+    <tr>
+      <td colspan="4" id="eraser-pending">
+        <%= render 'erasers/pending', :eraser => eraser %>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

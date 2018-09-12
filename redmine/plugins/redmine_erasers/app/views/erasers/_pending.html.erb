@@ -1,0 +1,9 @@
+<%= l(:label_eraser_pending,
+      {:time => distance_of_time_in_words(Time.now, eraser.updated_at),
+       :restore => link_to(l(:label_eraser_restore),
+                           restore_eraser_path(eraser, :project_id => @project.id),
+                           :method => :put),
+       :delete  => link_to(l(:label_eraser_delete), eraser_path(eraser),
+                           :method => :delete, :remote => true)
+      }
+    ).html_safe %>

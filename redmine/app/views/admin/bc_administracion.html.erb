@@ -1,0 +1,34 @@
+<h2>Crear Nuevo</h2>
+<%= form_for (@bandejaNueva) do |f| %>
+<div>
+	<strong><h0>Asistente: </h0></strong>
+ <%= f.select(:usr_asistente ,   @users.map{ |c| ["#{c.firstname} #{c.lastname}", "#{c.id}"] }) %>
+ <strong><h0>Propietario: </h0></strong>
+ <%= f.select(:usr_propietario , @users.map{ |c| ["#{c.firstname} #{c.lastname}", "#{c.id}"]}) %>
+</div>
+<div>
+<%= f.submit "Guardar" %>
+</div>
+
+<%end%>
+
+<br><br>
+
+<h2>Asistentes Actuales: </h2><!-- titulo principal de la pagina, el label debe estar declarado en todos los archivos de internazionalizacion en /config/locales/*.yml  -->
+
+<table class="list"><thead>
+<tr>
+    <th><strong><%= 'Asistente' %></strong></th>
+    <th><strong><%= 'Propietario'%></strong></th>
+    <th><strong><%= 'Borrar'     %></strong></th>
+</tr></thead>
+<% @bandejaCompartida.each do |bandeja| %>
+<tr class="<%= cycle('odd', 'even') %>">
+    <td><%=bandeja.usr_asistente.firstname%> <%=bandeja.usr_asistente.lastname%> (<%=bandeja.usr_asistente.login%>)</td>
+    <td><%=bandeja.usr_propietario.firstname%> <%=bandeja.usr_propietario.lastname%> (<%=bandeja.usr_propietario.login%>)</td>
+    <td class="buttons"><%= link_to "Borrar", bandeja, method: :delete, :class => 'icon icon-del'%></td><!-- el metodo delete tiene q estar definido en /config/routes.rb  y en bandeja_compartida_controller -->
+    </tr>
+<% end %>
+</table>
+
+<% html_title(l(:label_administration)) -%>  <!-- Permite poner un titulo en la pestaña del navegador-->

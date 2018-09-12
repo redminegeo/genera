@@ -1,0 +1,100 @@
+
+
+<p>
+  <strong>Issue:</strong>
+  <%= @formal_document.issue_id %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= @formal_document.journal_id %>
+</p>
+
+<p>
+  <strong>Content html:</strong>
+  <%= @formal_document.content_html %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @formal_document.filename %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @formal_document.author_id %>
+</p>
+
+<p>
+  <strong>Is signatured:</strong>
+  <%= @formal_document.is_signatured %>
+</p>
+
+<p>
+  <strong>Is deleted:</strong>
+  <%= @formal_document.is_deleted %>
+</p>
+
+<p>
+  <strong>Deleted user:</strong>
+  <%= @formal_document.deleted_user %>
+</p>
+
+<p>
+  <strong>Created user:</strong>
+  <%= @formal_document.created_user %>
+</p>
+
+<%= link_to l(:label_search_for_assigneds), 
+                          {:controller => 'formal_documents', :action => 'dialog',
+                             :issue_id => 277, :journal_id => 0},
+                          :remote => true,
+                          :method => 'post' %>
+
+
+
+<%= @formal_document.author %><br>
+<%= @formal_document.created %><br>
+<hr>
+<% if @formal_document.author.signature.present? %>
+  <%= @formal_document.author.signature.filename %><br>
+  <%= @formal_document.author.signature.disk_filename %><br>
+  <%= @formal_document.author.signature.disk_directory %><br>
+  <%= @formal_document.author.signature.content_type %><br>
+<% end %><br>
+<hr>
+<%= link_to 'Edit', edit_formal_document_path(@formal_document) %> |
+<%= link_to 'Back', formal_documents_path %>
+
+<script>
+  $(function () {
+    $("#dialog").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 900
+    });
+    $("#abrir").button().click(function () {
+      $("#dialog").dialog("open");
+    });
+    $("#tabs").tabs();
+  });
+</script>
+
+Diálogo:
+<div id="dialog" title="Visualizador de Documentos">
+  <div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Normal</a></li>
+    <li><a href="#tabs-2">Firmado</a></li>
+  </ul>
+  <div id="tabs-1">
+    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
+  </div>
+  <div id="tabs-2">
+    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+  </div>
+</div>
+  <%= render :partial => 'formal_documents/menu' %>
+</div>
+<button id="abrir">Abrir diálogo</button>

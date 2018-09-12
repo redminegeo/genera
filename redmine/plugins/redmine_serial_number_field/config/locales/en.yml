@@ -1,0 +1,8 @@
+en:
+  label_serial_number: Numeracion por siglas
+
+  activerecord:
+    errors:
+      messages:
+        end_must_numeric_format_in_serial_number: "formato no encontrado"
+        invalid_format_in_serial_number: "invalido el formato"

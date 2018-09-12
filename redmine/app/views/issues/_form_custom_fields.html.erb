@@ -1,0 +1,36 @@
+<% custom_field_values = @issue.editable_custom_field_values %>
+<div class="splitcontent">
+<div class="splitcontentleft">
+<% i = 0 %>
+<% split_on = (custom_field_values.size / 2.0).ceil - 1 %>
+<% custom_field_values.each do |value| %>
+<p>
+	<%= custom_field_tag_with_label :issue, value, :required => @issue.required_attribute?(value.custom_field_id) %>
+	<!-- #fjaneta1 -->	
+	<%if(value.custom_field_id==2) %>
+	<button id="btn_buscar_cliente" style="left:170px"  onclick="callWebService();return false;" >Buscar</button>
+	<%end%>
+	<%if(value.custom_field_id==20) %>
+	<button id="btn_buscar_cuenta" style="left:170px"  onclick="getAbonado();return false;" >Buscar</button>
+
+	<script type="text/javascript">
+		if(document.getElementById("btn_buscar_cliente")) {
+     		document.getElementById("btn_buscar_cliente").disabled = true;
+		}
+	</script>
+
+	<%end%>
+	<!-- #fjaneta1 -->
+</p>
+
+<% if i == split_on -%>
+</div>
+<div class="splitcontentright">
+<% end -%>
+<% i += 1 -%>
+<% end -%>
+<table>
+<tr><td ALIGN=center><div id="viewPredio"></div></td></tr>
+</table>
+</div>
+</div>

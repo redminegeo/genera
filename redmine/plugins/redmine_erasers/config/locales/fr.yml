@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+fr:
+  label_eraser_saved_time: "Brouillon sauvegardé à %{value}"
+  label_eraser_pending: "Brouillon en attente, sauvegardé il y a %{time} : %{restore} ou %{delete}"
+  label_eraser_restore: "restaurer"
+  label_eraser_delete: "supprimer"

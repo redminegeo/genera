@@ -1,0 +1,6 @@
+# Portuguese strings go here for Rails i18n
+pt-BR:
+  label_eraser_saved_time: "Rascunho salvo às %{value}"
+  label_eraser_pending: "Rascunho pendente, salvo à %{time} atrás : %{restore} ou %{delete}"
+  label_eraser_restore: "restaurar"
+  label_eraser_delete: "apagar"

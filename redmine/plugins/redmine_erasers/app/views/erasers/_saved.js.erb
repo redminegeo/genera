@@ -1,0 +1,11 @@
+var $status = $("#eraser-status")
+var first_save = $status.is(":empty")
+$status.html("<%= l(:label_eraser_saved_time, @eraser.updated_at.strftime("%H:%M:%S")) %>")
+if (first_save) {
+  $status.effect("highlight")
+}
+if ($status.is(":empty")) {
+  $status.hide()
+}
+//hide any previous "eraser-pending" div
+$("#eraser-pending").hide()

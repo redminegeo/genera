@@ -1,0 +1,16 @@
+<p>
+  <%= f.text_field(:regexp, :size => 50, :required => true, :disabled => !custom_field.new_record?) %>
+  <em class="info">gestion doc: 2018-01-02</em>
+  <em class="info">{yyyy}-{00000} #=> 2018-00001</em>
+</p>
+
+<%= f.hidden_field :is_required, :value => '0' %>
+<%= f.hidden_field :visible, :value => '1' %>
+<%= hidden_field_tag 'custom_field[role_ids][]', '' %>
+
+<script>
+  $(document).ready(function() {
+    $('input[type="checkbox"]#custom_field_is_required').parent().remove();
+    $('input[type="radio"]#custom_field_visible_on').parent().parent().remove();
+  });
+</script>

@@ -1,0 +1,163 @@
+<div class="contextual">
+<% if @issue.status_id == 4 %>
+ <%= form_tag({:controller => 'issues',
+              :action  => 'show'
+              }, :remote => true ) do%>
+<%= link_to l(:button_desactivar), :enviar => '1' %>
+ <% end %>
+<% end %>
+
+<%= link_to l(:button_respond), edit_issue_path(@issue), :onclick => 'showAndScrollTo("update", "issue_notes"); return false;', :class => 'icon icon-edit', :accesskey => accesskey(:edit) if @issue.editable? %>
+<% link_to l(:button_log_time), new_issue_time_entry_path(@issue), :class => 'icon icon-time-add' if User.current.allowed_to?(:log_time, @project) %>
+
+<% watcher_link(@issue, User.current) %>
+<% link_to l(:button_copy), project_copy_issue_path(@project, @issue), :class => 'icon icon-copy' if User.current.allowed_to?(:copy_issues, @project) && Issue.allowed_target_projects.any? %>
+<% link_to l(:button_delete), issue_path(@issue), :data => {:confirm => issues_destroy_confirmation_message(@issue)}, :method => :delete, :class => 'icon icon-del' if User.current.allowed_to?(:delete_issues, @project) %>
+
+<% if !@issue.leaf? || User.current.allowed_to?(:manage_subtasks, @project) %>
+  <%= link_to_new_subtask(@issue) if User.current.allowed_to?(:manage_subtasks, @project) %>
+<% end %>
+
+<!-- #vcolcha-->
+<a id="open" onclick="menu_trazabilidad_pdf()" href="#" class="icon icon-file application-pdf">Recorrido</a>
+<a id="open" onclick="menu_pdf()" href="#" class="icon icon-file application-pdf">Generar Fisico</a>
+
+
+<script>
+  $(function () {
+    $("#dialog").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 900
+    });
+    $("#tabs").tabs();
+  });
+
+  function menu_pdf(){
+    normal('0');
+    signatured('0');
+    $("#dialog").dialog("open");
+  }
+
+  function menu_journal_pdf(idJournal){
+    normal(idJournal);
+    signatured(idJournal);
+    $("#dialog").dialog("open");
+  }
+
+  function normal(idJournal){
+    $("#normal").html("<embed src='../formal_documents/to_normal?issue_status=<%=@issue.status_id.to_s %>&issue_id=<%= @issue.id.to_s %>&journal_id="+idJournal+"#page=1&zoom=90' width='825' height='375'>");
+  }
+
+<!-- ##############################reportevictorinit  -->
+$(function () {
+    $("#dialogReporte").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 900
+    });
+    $("#tabsReporte").tabs();
+  });
+function menu_reporte_pdf(){
+      normal_reporte('0');
+      $("#dialogReporte").dialog("open");}
+function normal_reporte1(idJournal){
+$("#normal_reporte").html("<embed src='../formal_documents/to_normal_reporte?issue_id=<%=@issue.id.to_s %>&journal_id="+idJournal+"#page=1&zoom=90' width='825' height='375'>");
+}
+
+<!-- #reportevc 1  -->
+ function menu_reportevc_pdf(){
+      geovc(0);}
+ function geovc(idJournal){
+   $('#ajax-modal').html('<%= escape_javascript(render :partial => 'issues/reporte', :locals => {:issues => @issue,:issues => @idJournal}) %>');
+   showModal('ajax-modal', '400px');  }
+<!-- #########################reportevict  -->
+
+
+<!-- ##############################Trazabilidadvictorinit  -->
+$(function () {
+    $("#dialogTrazabilidad").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 900
+    });
+    $("#tabsTrazabilidad").tabs();
+  });
+function menu_trazabilidad_pdf(){
+      normal_trazabilidad('0');
+      $("#dialogTrazabilidad").dialog("open");}
+
+  function normal_trazabilidad(idJournal){
+    $("#normal_trazabilidad").html("<embed src='../formal_documents/to_normal_trazabilidad?issue_id=<%=@issue.id.to_s
+%>&journal_id="+idJournal+"#page=1&zoom=90' width='825' height='375'>");
+  }
+
+<!-- #######################################################Trazabilidadvictorfin  -->
+
+
+  function signatured(idJournal){
+
+
+    <%if@issue.author.signature.present? %>
+      <% _resultado =  @issue.author.signature.validate %>
+      <% if _resultado.status %>
+        $("#signatured").html("<embed src='../formal_documents/to_signatured?issue_id=<%=@issue.id.to_s%>&journal_id="+idJournal+"#page=1&zoom=90' width='825' height='375'>");
+      <%else%>
+        $("#signatured").html("<br><strong style='color: red' ><%=_resultado.message%></strong>");
+      <%end%>
+    <%else%>
+         
+
+<% if 122 == 16757 %> 
+
+    $("#signatured").html("<br><strong>El autor no posee una Firma Electrónica verdadero</strong>");
+<%else%>
+ $("#signatured").html("<br><strong>El autor no posee una Firma Electrónica false  "+<%= @v%>  +  " </strong>");
+
+<%end%>
+          
+    
+      
+    <%end%>
+  }
+
+</script>
+
+<!-- -vcolcha trazabilidad init- 3/3-->
+<div id="dialogTrazabilidad" title="Trazabilidad">
+  <div id="tabsTrazabilidad">
+    <ul>
+      <li><a id="aNormal" href="#normal_trazabilidad">Reporte</a></li>
+     </ul>
+    <div id="normal_trazabilidad"></div>
+    </div>
+</div>
+<!-- -vcolcha trazabilidad fin-3/3 -->
+
+<!-- -vcolcha reporte init- 3/3-->
+<div id="dialogReporte" title="Reporte">
+  <div id="tabsReporte">
+    <ul>
+      <li><a id="aNormal" href="#normal_reporte">Reporte</a></li>
+     </ul>
+    <div id="normal_reporte"></div>
+    </div>
+</div>
+<!-- -vcolcha reporte fin-3/3 -->
+
+
+<div id="dialog" title="Visualizador de Documentos">
+  <div id="tabs">
+    <ul>
+      <li><a id="aNormal" href="#normal">Normal</a></li>
+      <li><a id="aSignature" href="#signatured">Firmado</a></li>
+    </ul>
+    <div id="normal"></div>
+    <div id="signatured"></div>
+  </div>
+</div>
+
+</div>

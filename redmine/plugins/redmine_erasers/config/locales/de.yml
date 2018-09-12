@@ -1,0 +1,6 @@
+# German strings go here for Rails i18n
+de:
+  label_eraser_saved_time: "Zwischenstand gespeichert um %{value}"
+  label_eraser_pending: "Zwischenstand, gespeichert vor %{time}: %{restore} oder %{delete}"
+  label_eraser_restore: "Wiederherstellen"
+  label_eraser_delete: "Löschen"

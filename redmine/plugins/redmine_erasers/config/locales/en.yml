@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+en:
+  label_eraser_saved_time: "Eraser saved at %{value}"
+  label_eraser_pending: "Eraser pending, saved %{time} ago : %{restore} or %{delete}"
+  label_eraser_restore: "restore"
+  label_eraser_delete: "delete"

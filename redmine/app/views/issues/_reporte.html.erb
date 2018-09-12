@@ -1,0 +1,99 @@
+<h3 class="title"><%= 'Reporte peticiones' %></h3>
+
+ <%= form_tag({:controller => 'formal_documents',
+              :action  => 'to_normal_reporte',
+              :object_id => issues,
+              :project_id => 'VCOLCHA'},
+              :remote => true,
+             :method => :post
+             ) do%>
+
+
+<%= labelled_fields_for :issue, @issue do |f| %>
+<% if @issue.safe_attribute? 'tracker_id' %>
+<p><%= f.select :tracker_id, @issue.project.trackers.collect {|t| [t.name,  t.id]}, {:required => true },
+:onchange => "updateIssueFrom('alert('victor')')"   %> </p>
+
+<% end %>
+
+<% end %>
+
+<%= labelled_fields_for :issue, @issue do |f| %>
+<% if @issue.safe_attribute? 'tracker_id' %>
+<p><%= f.select :tracker_id, @issue.project.trackers.collect {|t| [t.name,  t.id]}, {@vc1 => 'geoconda' }  %> </p>
+<%= javascript_tag "observeSearchfield( 'tracker_id', 'users_for_idpeticion', '#{ escape_javascript url_for(:controller => 'formal_documents',
+              :action => 'tipo',
+              :object_id => issues,
+              :project_id => @project) }')" %>
+
+
+<% end %><% end %>
+
+   <div class="box">
+<p><%= label_tag 'user_search_init', 'Inicio' %> </p><%= date_field_tag 'user_search_init', nil %>
+<p><%= label_tag 'user_search_end', 'Fin' %> </p> <%= date_field_tag 'user_search_end', nil %>
+     </div>
+
+<%= javascript_tag "observeSearchfield('user_search_init', 'users_search_vc', '#{ escape_javascript url_for(:controller => 'formal_documents',
+              :action => 'valor',
+              :object_id => issues,
+              :project_id => @project) }')" %>
+
+<%= javascript_tag "observeSearchfield('user_search_end', 'users_for_assigned', '#{ escape_javascript url_for(:controller => 'formal_documents',
+              :action => 'valor_end',
+              :object_id => issues,
+              :project_id => @project) }')" %>
+
+<%= submit_tag "reporte", :onclick => "menu_c_pdf()"  %>
+
+
+ <% end %>
+
+
+<script type="text/javascript">
+ $(function () {
+    $("#dialog").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 900
+    });
+    $("#tabs").tabs();
+  });
+ function menu_c_pdf(){
+       normal_reporte('v');
+      $("#dialogReporte").dialog("open");
+  }
+function normal_reporte(vic){
+$("#normal_reporte").html("<embed src='../formal_documents/to_normal_reporte?issue_id=<%=@issue.id.to_s%>&journal_id="+vic+"#page=1&zoom=90' width='825' height='375'>");
+  }
+
+
+
+</script>
+<div id="dialogReporte" title="Visualizador de Documentos victor">
+  <div id="tabs">
+
+  </div>
+</div>
+
+<!-- -vcolcha reporte init- 3/3-->
+<div id="dialogReporte" title="Reporte">
+  <div id="tabsReporte">
+    <ul>
+      <li><a id="aNormal" href="#normal_reporte"></a></li>
+     </ul>
+    <div id="normal_reporte"></div>
+    </div>
+</div>
+<!-- -vcolcha reporte fin-3/3 -->
+
+<%= javascript_tag do %>
+$(document).ready(function(){
+  $("#issue_tracker_id, #issue_status_id").each(function(){
+ $(this).val($(this).find("option[selected=selected]").val());
+
+  });
+});
+<% end %>
+

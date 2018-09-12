@@ -1,0 +1,11 @@
+<h2>Crear Nuevo</h2>
+<%= form_for (@bandejaNueva) do |f| %>
+<div>
+ <%= f.select(:usr_asistente ,   @users.map{ |c| ["#{c.firstname} #{c.lastname}", "#{c.id}"] }) %>
+ <%= f.select(:usr_propietario , @users.map{ |c| ["#{c.firstname} #{c.lastname}", "#{c.id}"]}) %>
+</div>
+<div>
+<%= f.submit "Guardar" %>
+</div>
+
+<%end%>

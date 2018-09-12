@@ -1,0 +1,30 @@
+---
+en:
+  project_module_traceability: Traceability Matrix
+  permission_view_mt: View traceability matrix
+  traceability:
+    plugin_name: Traceability Matrix
+    plugin_description: Plugin to show the traceability matrix between two trackers
+    menu_item_name: Traceability
+    setup: An error occurred. Please, check the plugin configuration
+    first_tracker: First tracker (rows)
+    second_tracker: Second tracker (columns)
+    intermediate_tracker: Intermediate tracker
+  activerecord:
+    attributes:
+      escojida_la_entida:
+        name: Name
+        field_escojida_la_entida_created_at: Created at
+        field_escojida_la_entida_updated_at: Updated at
+  easy_query:
+    name:
+      escojida_la_entida_query: Escojida La Entidas
+  heading_escojida_la_entida_new: New Escojida La Entida
+  heading_escojida_la_entida_edit: Edit Escojida La Entida
+  button_escojida_la_entida_new: New Escojida La Entida
+  label_escojida_la_entidas: Escojida La Entidas
+  label_escojida_la_entida: Escojida La Entida
+  permission_view_escojida_la_entidas: View Escojida La Entidas
+  permission_manage_escojida_la_entidas: Manage Escojida La Entidas
+  title_escojida_la_entida_new: Click to create new Escojida La Entida
+  label_filter_group_escojida_la_entida_query: ESCOJIDALaEntida

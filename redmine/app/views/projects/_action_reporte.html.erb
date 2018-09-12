@@ -1,0 +1,36 @@
+<div class="contextual">
+ <a id="open" onclick="menu_reportevc_pdf()" href="#" class="icon icon-file application-pdf">Reporte General</a>
+<script>
+$(function () {
+    $("#dialogReporte").dialog({
+      autoOpen: false,
+      modal: true,
+      height: 500,
+      width: 950
+    });
+    $("#tabsReporte").tabs();
+  });
+  function menu_reporte_pdf(){
+      normal_reporte('0');
+      $("#dialogReporte").dialog("open");
+      }
+ function menu_reportevc_pdf(){
+      rmenu(0);
+
+      }
+ function rmenu(idJournal){
+
+$('#ajax-modal').html('<%= escape_javascript(render :partial => 'reporte') %>');
+showModal('ajax-modal', '400px');
+  }
+</script>
+<div id="dialogReporte" title="Reporte Action">
+  <div id="tabsReporte">
+    <ul>
+      <li><a id="aNormal" href="#normal_reporte">Reporte General</a></li>
+     </ul>
+    <div id="normal_reporte"></div>
+    </div>
+</div> 
+</div>
+
