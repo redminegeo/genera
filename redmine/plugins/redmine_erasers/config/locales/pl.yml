@@ -1,7 +1,0 @@
-# Polish strings go here for Rails i18n
-pl:
-  label_eraser_saved_time: "Przeciąg zapisany ostatnio %{value}"
-  label_eraser_pending: "Przeciąg w toku, zapisany %{time} temu : %{restore} lub %{delete}"
-  label_eraser_restore: "przywrócić"
-  label_eraser_delete: "usuń"
-

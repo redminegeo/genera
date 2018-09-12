@@ -1,6 +1,0 @@
-# Japanese strings go here for Rails i18n
-ja:
-  label_eraser_saved_time: "ドラフトは %{value} に保存されました。"
-  label_eraser_pending: "%{time}前に保存されたドラフトがあります。 : %{restore} or %{delete}"
-  label_eraser_restore: "復旧"
-  label_eraser_delete: "削除"

@@ -1,9 +1,0 @@
-<ul>
-<% if @escojida_la_entida && !@escojida_la_entida.new_record? %>
-  <li><%= link_to l(:button_edit), edit_polymorphic_path([@project, @escojida_la_entida]), title: l(:button_edit), class: 'icon icon-edit button' %></li>
-<% end %>
-<% if @escojida_la_entida.nil? %>
-  <li><%= link_to l(:button_escojida_la_entida_new), new_polymorphic_path([@project, :escojida_la_entida]), title: l(:title_escojida_la_entida_new), class: 'icon icon-add button button-positive' %></li>
-<% end %>
-  <li><%= link_to l(:label_escojida_la_entidas), polymorphic_path([@project, :escojida_la_entidas], set_filter: '1'), title: l(:label_escojida_la_entidas), class: 'icon icon-folder button' %></li>
-</ul>

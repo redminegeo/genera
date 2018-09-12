@@ -1,5 +1,0 @@
-zh:
-  label_eraser_saved_time: "草稿已暂存 %{value}"
-  label_eraser_pending: "%{time}之前暂存的未决草稿 : %{restore} 或 %{delete}"
-  label_eraser_restore: "恢复"
-  label_eraser_delete: "删除"

@@ -1,5 +1,0 @@
-api.array :escojida_la_entidas, api_meta(total_count: @entity_count, offset: @offset, limit: @limit) do
-  @entities.each do |escojida_la_entida|
-    render_api_escojida_la_entida(api, escojida_la_entida)
-  end
-end

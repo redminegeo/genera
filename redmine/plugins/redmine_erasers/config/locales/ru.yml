@@ -1,6 +1,0 @@
-# Russian strings go here for Rails i18n
-ru:
-  label_eraser_saved_time: "Черновик сохранен в %{value}"
-  label_eraser_pending: "Черновик в ожидании, сохранен %{time} назад : %{restore} или %{delete}"
-  label_eraser_restore: "восстановить"
-  label_eraser_delete: "удалить"

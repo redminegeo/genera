@@ -1,8 +1,0 @@
-<%= fields_for :escojida_la_entida, escojida_la_entida do |f| %>
-  <% if escojida_la_entida.safe_attribute?('name') %>
-  <p>
-    <%= f.label :name, ::ESCOJIDALaEntida.human_attribute_name(:name) %>
-    <%= f.text_field :name %>
-  </p>
-  <% end %>
-<% end %>
